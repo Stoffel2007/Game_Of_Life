@@ -1,0 +1,453 @@
+﻿<Window x:Class="Game_Of_Life.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Game_Of_Life"
+        mc:Ignorable="d"
+        Title="Conway's Game Of Life"
+        Height="740" Width="950"
+        WindowState="Maximized">
+    
+    <Window.Resources>
+        <RoutedUICommand x:Key="button_create_field" />
+        <RoutedUICommand x:Key="button_delete" />
+        <RoutedUICommand x:Key="button_fast_rewind" />
+        <RoutedUICommand x:Key="button_step_rewind" />
+        <RoutedUICommand x:Key="button_play_pause" />
+        <RoutedUICommand x:Key="button_step" />
+        <RoutedUICommand x:Key="button_step_forward" />
+        <RoutedUICommand x:Key="button_fast_forward" />
+        <RoutedUICommand x:Key="button_left_up_right_down" />
+        <RoutedUICommand x:Key="button_toggle_gridlines" />
+        <RoutedUICommand x:Key="button_toggle_border" />
+    </Window.Resources>
+    
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource button_create_field}" Executed="button_draw_Click" />
+        <CommandBinding Command="{StaticResource button_delete}" Executed="button_delete_field_Click" />
+        <CommandBinding Command="{StaticResource button_fast_rewind}" Executed="button_fast_rewind_Click" />
+        <CommandBinding Command="{StaticResource button_step_rewind}" Executed="button_step_rewind_Click" />
+        <CommandBinding Command="{StaticResource button_play_pause}" Executed="button_play_pause_Click" />
+        <CommandBinding Command="{StaticResource button_step}" Executed="button_step_Click" />
+        <CommandBinding Command="{StaticResource button_step_forward}" Executed="button_step_forward_Click" />
+        <CommandBinding Command="{StaticResource button_fast_forward}" Executed="button_fast_forward_Click" />
+        <CommandBinding Command="{StaticResource button_left_up_right_down}" Executed="gameboardMove" />
+        <CommandBinding Command="{StaticResource button_toggle_gridlines}" Executed="toggle_gridlines" />
+        <CommandBinding Command="{StaticResource button_toggle_border}" Executed="toggle_border" />
+        </Window.CommandBindings>
+    
+    <Window.InputBindings>
+        <KeyBinding Key="Q" Command="{StaticResource button_create_field}" />
+        <KeyBinding Key="E" Command="{StaticResource button_delete}" />
+        <KeyBinding Key="A" Command="{StaticResource button_fast_rewind}" />
+        <KeyBinding Key="A" Modifiers="Shift" Command="{StaticResource button_step_rewind}" />
+        <KeyBinding Key="S" Command="{StaticResource button_play_pause}" />
+        <KeyBinding Key="S" Modifiers="Shift" Command="{StaticResource button_step}" />
+        <KeyBinding Key="D" Modifiers="Shift" Command="{StaticResource button_step_forward}" />
+        <KeyBinding Key="D" Command="{StaticResource button_fast_forward}" />
+        <KeyBinding Key="J" Command="{StaticResource button_left_up_right_down}" />
+        <KeyBinding Key="I" Command="{StaticResource button_left_up_right_down}" />
+        <KeyBinding Key="L" Command="{StaticResource button_left_up_right_down}" />
+        <KeyBinding Key="K" Command="{StaticResource button_left_up_right_down}" />
+        <KeyBinding Key="Y" Command="{StaticResource button_toggle_gridlines}" />
+        <KeyBinding Key="X" Command="{StaticResource button_toggle_border}" />
+    </Window.InputBindings>
+    
+    <Grid>
+        <Menu Height="25" VerticalAlignment="Top">
+            <MenuItem Header="Anleitung">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Kommando" FontWeight="Bold" Grid.Row="0" Grid.Column="0" />
+                    <TextBlock Text="Aktion" FontWeight="Bold" Grid.Row="0" Grid.Column="1" />
+                    <TextBlock Text="Q" Grid.Row="1" Grid.Column="0" />
+                    <TextBlock Text="zufälliges Feld zeichnen" Grid.Row="1" Grid.Column="1" />
+                    <TextBlock Text="E" Grid.Row="2" Grid.Column="0" />
+                    <TextBlock Text="Feld löschen" Grid.Row="2" Grid.Column="1" />
+                    <TextBlock Text="A" Grid.Row="3" Grid.Column="0" />
+                    <TextBlock Text="zurückspulen" Grid.Row="3" Grid.Column="1" />
+                    <TextBlock Text="Shift + A" Grid.Row="4" Grid.Column="0" />
+                    <TextBlock Text="schrittweise zurückspulen" Grid.Row="4" Grid.Column="1" />
+                    <TextBlock Text="S" Grid.Row="5" Grid.Column="0" />
+                    <TextBlock Text="Start/Stopp" Grid.Row="5" Grid.Column="1" />
+                    <TextBlock Text="Shift + S" Grid.Row="6" Grid.Column="0" />
+                    <TextBlock Text="schrittweise abspielen" Grid.Row="6" Grid.Column="1" />
+                    <TextBlock Text="D" Grid.Row="7" Grid.Column="0" />
+                    <TextBlock Text="vorspulen" Grid.Row="7" Grid.Column="1" />
+                    <TextBlock Text="Shift + D" Grid.Row="8" Grid.Column="0" />
+                    <TextBlock Text="schrittweise vorspulen" Grid.Row="8" Grid.Column="1" />
+                    <TextBlock Text="Y" Grid.Row="9" Grid.Column="0" />
+                    <TextBlock Text="Spielfeldlinien ein-/ausblenden" Grid.Row="9" Grid.Column="1" />
+                    <TextBlock Text="X" Grid.Row="10" Grid.Column="0" />
+                    <TextBlock Text="Spielfeldgrenze ein-/ausschalten" Grid.Row="10" Grid.Column="1" />
+                    <TextBlock Text="linke Maustaste" Grid.Row="11" Grid.Column="0" />
+                    <TextBlock Text="zeichnen" Grid.Row="11" Grid.Column="1" />
+                    <TextBlock Text="rechte Maustaste" Grid.Row="12" Grid.Column="0" />
+                    <TextBlock Text="radieren" Grid.Row="12" Grid.Column="1" />
+                    <TextBlock Text="Mausrad" Grid.Row="13" Grid.Column="0" />
+                    <TextBlock Text="zoomen" Grid.Row="13" Grid.Column="1" />
+                    <TextBlock Text="I, J, K, L" Grid.Row="14" Grid.Column="0" />
+                    <TextBlock Text="Spielfeld verschieben (nur bei Zoom)" Grid.Row="14" Grid.Column="1" />
+                </Grid>
+            </MenuItem>
+            <MenuItem Name="menu_rules" Header="Regeln">
+                <MenuItem Tag="123/36" Header="2x2" />
+                <MenuItem Tag="34/34" Header="34 Life" />
+                <MenuItem Tag="1358/357" Header="Amoeba" />
+                <MenuItem Tag="4567/345" Header="Assimilation" />
+                <MenuItem Tag="235678/378" Header="Coagulations" />
+                <MenuItem Tag="45678/3" Header="Coral" />
+                <MenuItem Tag="34678/3678" Header="Day And Night" />
+                <MenuItem Tag="5678/35678" Header="Diamoeba" />
+                <MenuItem Tag="023/3" Header="DotLife" />
+                <MenuItem Tag="23/37" Header="DryLife" />
+                <MenuItem Tag="02468/1357" Header="Fredkin" />
+                <MenuItem Tag="23/3" Header="Game Of Life" />
+                <MenuItem Tag="1/1" Header="Gnarl" />
+                <MenuItem Tag="23/36" Header="HighLife" />
+                <MenuItem Tag="012345678/3" Header="Life Without Death" />
+                <MenuItem Tag="0/2" Header="Live Free Or Die" />
+                <MenuItem Tag="5/345" Header="Long Life" />
+                <MenuItem Tag="12345/3" Header="Maze" />
+                <MenuItem Tag="1234/3" Header="Mazectric" />
+                <MenuItem Tag="245/368" Header="Move" />
+                <MenuItem Tag="238/357" Header="Pseudo Live" />
+                <MenuItem Tag="1357/1357" Header="Replicator" />
+                <MenuItem Tag="/2" Header="Seeds" />
+                <MenuItem Tag="/234" Header="Serviettes" />
+                <MenuItem Tag="235678/3678" Header="Stains" />
+                <MenuItem Tag="45678/5678" Header="Vote" />
+                <MenuItem Tag="35678/4678" Header="Vote 4/5" />
+                <MenuItem Tag="2345/45678" Header="Walled Cities" />
+            </MenuItem>
+            <MenuItem Header="Figuren">
+                <MenuItem Header="Guns" Name="menu_item_guns">
+                    <MenuItem Header="AK-94" Name="gun_ak_94" />
+                    <MenuItem Header="B-52 Bomber" Name="gun_b_52_bomber" />
+                    <MenuItem Header="Bi-gun" Name="gun_bi_gun" />
+                    <MenuItem Header="Gosper Glider Gun" Name="gun_gosper_glider_gun" />
+                    <MenuItem Header="New Gun 1" Name="gun_new_gun_1" />
+                    <MenuItem Header="New gun 2" Name="gun_new_gun_2" />
+                    <MenuItem Header="Period-36 Glider Gun" Name="gun_period_36_glider_gun" />
+                    <MenuItem Header="Period-45 Glider Gun" Name="gun_period_45_glider_gun" />
+                    <MenuItem Header="Period-60 Glider Gun" Name="gun_period_60_glider_gun" />
+                    <MenuItem Header="Simkin Glider Gun" Name="gun_simkin_glider_gun" />
+                    <MenuItem Header="True Period-22 Gun" Name="gun_true_period_22_gun" />
+                    <MenuItem Header="True Period-24 Gun" Name="gun_true_period_24_gun" />
+                    <MenuItem Header="Vacuum" Name="gun_vacuum" />
+                </MenuItem>
+                <MenuItem Header="Oscillators" Name="menu_item_oscillators">
+                    <MenuItem Header="Unbenannt">
+                        <MenuItem Header="104P177" Name="oscillator_104_p_177" />
+                        <MenuItem Header="112P51" Name="oscillator_112_p_51" />
+                        <MenuItem Header="117P18" Name="oscillator_117_p_18" />
+                        <MenuItem Header="124P37" Name="oscillator_124_p_37" />
+                        <MenuItem Header="132P37" Name="oscillator_132_p_37" />
+                        <MenuItem Header="144P24" Name="oscillator_144_p_24" />
+                        <MenuItem Header="186P24" Name="oscillator_186_p_24" />
+                        <MenuItem Header="22P36" Name="oscillator_22_p_36" />
+                        <MenuItem Header="26P40" Name="oscillator_26_p_40" />
+                        <MenuItem Header="34P13" Name="oscillator_34_p_13" />
+                        <MenuItem Header="35P52" Name="oscillator_35_p_52" />
+                        <MenuItem Header="36P22" Name="oscillator_36_p_22" />
+                        <MenuItem Header="47P72" Name="oscillator_47_p_72" />
+                        <MenuItem Header="48P31" Name="oscillator_48_p_31" />
+                        <MenuItem Header="49P88" Name="oscillator_49_p_88" />
+                        <MenuItem Header="50P35" Name="oscillator_50_p_35" />
+                        <MenuItem Header="56P27" Name="oscillator_56_p_27" />
+                        <MenuItem Header="6 Bits" Name="oscillator_6_bits" />
+                        <MenuItem Header="60P33" Name="oscillator_60_p_33" />
+                        <MenuItem Header="78P70" Name="oscillator_78_p_70" />
+                        <MenuItem Header="88P28" Name="oscillator_88_p_28" />
+                        <MenuItem Header="92P33.1" Name="oscillator_92_p_33_1" />
+                        <MenuItem Header="98P25" Name="oscillator_98_p_25" />
+                    </MenuItem>
+                    <MenuItem Header="A">
+                        <MenuItem Header="Achim's p11" Name="oscillator_achims_p_11" />
+                        <MenuItem Header="Achim's p144" Name="oscillator_achims_p_144" />
+                        <MenuItem Header="Achim's p16" Name="oscillator_achims_p_16" />
+                        <MenuItem Header="Almosymmetric" Name="oscillator_almosymmetric" />
+                    </MenuItem>
+                    <MenuItem Header="B">
+                        <MenuItem Header="Baker's dozen" Name="oscillator_bakers_dozen" />
+                        <MenuItem Header="Bottle" Name="oscillator_bottle" />
+                        <MenuItem Header="Buckar2o" Name="oscillator_buckar2o" />
+                        <MenuItem Header="By flops" Name="oscillator_by_flops" />
+                    </MenuItem>
+                    <MenuItem Header="C">
+                        <MenuItem Header="Carnival shuttle" Name="oscillator_carnival_shuttle" />
+                        <MenuItem Header="Centinal" Name="oscillator_centinal" />
+                        <MenuItem Header="Clock" Name="oscillator_clock" />
+                        <MenuItem Header="Cross" Name="oscillator_cross" />
+                        <MenuItem Header="Cross 2" Name="oscillator_cross_2" />
+                    </MenuItem>
+                    <MenuItem Header="D">
+                        <MenuItem Header="Diamond ring" Name="oscillator_diamond_ring" />
+                        <MenuItem Header="Dinner table" Name="oscillator_dinner_table" />
+                        <MenuItem Header="Diuresis" Name="oscillator_diuresis" />
+                    </MenuItem>
+                    <MenuItem Header="E">
+                        <MenuItem Header="Eureka" Name="oscillator_eureka" />
+                        <MenuItem Header="Eureka v2" Name="oscillator_eureka_v_2" />
+                    </MenuItem>
+                    <MenuItem Header="F">
+                        <MenuItem Header="Figure eight" Name="oscillator_figure_eight" />
+                        <MenuItem Header="Fountain" Name="oscillator_fountain" />
+                    </MenuItem>
+                    <MenuItem Header="G">
+                        <MenuItem Header="Gabriel's p138" Name="oscillator_gabriels_p_138" />
+                        <MenuItem Header="Gourmet" Name="oscillator_gourmet" />
+                    </MenuItem>
+                    <MenuItem Header="H">
+                        <MenuItem Header="Harbor" Name="oscillator_harbor" />
+                        <MenuItem Header="Hectic" Name="oscillator_hectic" />
+                        <MenuItem Header="Honey thieves" Name="oscillator_honey_thieves" />
+                    </MenuItem>
+                    <MenuItem Header="J">
+                        <MenuItem Header="Jason's p11" Name="oscillator_jasons_p_11" />
+                        <MenuItem Header="Jolson" Name="oscillator_jolson" />
+                        <MenuItem Header="Jolson (Period 9)" Name="oscillator_jolson_period_9" />
+                        <MenuItem Header="JS p36" Name="oscillator_js_p_36" />
+                    </MenuItem>
+                    <MenuItem Header="K">
+                        <MenuItem Header="Karel's p15" Name="oscillator_karels_p_15" />
+                        <MenuItem Header="Kok's galaxy" Name="oscillator_koks_galaxy" />
+                    </MenuItem>
+                    <MenuItem Header="L">
+                        <MenuItem Header="Light speed oscillator 3" Name="oscillator_light_speed_oscillator_3" />
+                        <MenuItem Header="Loaflipflop" Name="oscillator_loaflipflop" />
+                    </MenuItem>
+                    <MenuItem Header="M">
+                        <MenuItem Header="Mmp11" Name="oscillator_mm_p_11" />
+                        <MenuItem Header="Monogram" Name="oscillator_monogram" />
+                    </MenuItem>
+                    <MenuItem Header="N">
+                        <MenuItem Header="Newshuttle" Name="oscillator_newshuttle" />
+                    </MenuItem>
+                    <MenuItem Header="O">
+                        <MenuItem Header="Octagon 2" Name="oscillator_octagon_2" />
+                        <MenuItem Header="Octagon 4" Name="oscillator_octagon_4" />
+                    </MenuItem>
+                    <MenuItem Header="P">
+                        <MenuItem Header="P11 pinwheel" Name="oscillator_p_11_pinwheel" />
+                        <MenuItem Header="P156 Hans Leo hassler" Name="oscillator_p_156_hans_leo_hassler" />
+                        <MenuItem Header="P18 honey farm hassler" Name="oscillator_p_18_honey_farm_hassler" />
+                        <MenuItem Header="P22 lumps of muck hassler" Name="oscillator_p_22_lumps_of_muck_hassler" />
+                        <MenuItem Header="P26 glider shuttle" Name="oscillator_p_26_glider_shuttle" />
+                        <MenuItem Header="P32 blinker hassler" Name="oscillator_p_32_blinker_hassler" />
+                        <MenuItem Header="P32 blinker hassler 2" Name="oscillator_p_32_blinker_hassler_2" />
+                        <MenuItem Header="P36 toad hassler" Name="oscillator_p_36_toad_hassler" />
+                        <MenuItem Header="P40 B-heptomino shuttle" Name="oscillator_p_40_b_heptomino_shuttle" />
+                        <MenuItem Header="P42 glider shuttle" Name="oscillator_p_42_glider_shuttle" />
+                        <MenuItem Header="P44 pi-heptomino hassler" Name="oscillator_p_44_pi_heptomino_hassler" />
+                        <MenuItem Header="P48 toad hassler" Name="oscillator_p_48_toad_hassler" />
+                        <MenuItem Header="P49 glider shuttle" Name="oscillator_p_49_glider_shuttle" />
+                        <MenuItem Header="P50 glider shuttle" Name="oscillator_p_50_glider_shuttle" />
+                        <MenuItem Header="P50 traffic jam" Name="oscillator_p_50_traffic_jam" />
+                        <MenuItem Header="P54 shuttle" Name="oscillator_p_54_shuttle" />
+                        <MenuItem Header="P56 B-heptomino shuttle" Name="oscillator_p_56_b_heptomino_shuttle" />
+                        <MenuItem Header="P58 toadsucker" Name="oscillator_p_58_toadsucker" />
+                        <MenuItem Header="P60 hassler" Name="oscillator_p_60_hassler" />
+                        <MenuItem Header="Pentadecathlon" Name="oscillator_pentadecathlon" />
+                        <MenuItem Header="Period-48 pi hassler" Name="oscillator_period_48_pi_hassler" />
+                        <MenuItem Header="Phoenix 1" Name="oscillator_phoenix_1" />
+                        <MenuItem Header="Pi orbital" Name="oscillator_pi_orbital" />
+                        <MenuItem Header="Pi portraitor" Name="oscillator_pi_portraitor" />
+                        <MenuItem Header="Popover" Name="oscillator_popover" />
+                        <MenuItem Header="Pre-pulsar hassler 55" Name="oscillator_pre_pulsar_hassler_55" />
+                        <MenuItem Header="Pre-pulsar shuttle 26" Name="oscillator_pre_pulsar_shuttle_26" />
+                        <MenuItem Header="Pre-pulsar shuttle 29" Name="oscillator_pre_pulsar_shuttle_29" />
+                        <MenuItem Header="Pre-pulsar shuttle 47" Name="oscillator_pre_pulsar_shuttle_47" />
+                        <MenuItem Header="Pre-pulsar shuttle 58" Name="oscillator_pre_pulsar_shuttle_58" />
+                        <MenuItem Header="Pulsar" Name="oscillator_pulsar" />
+                    </MenuItem>
+                    <MenuItem Header="Q">
+                        <MenuItem Header="Quad" Name="oscillator_quad" />
+                        <MenuItem Header="Quasar" Name="oscillator_quasar" />
+                        <MenuItem Header="Queen bee shuttle" Name="oscillator_queen_bee_shuttle" />
+                    </MenuItem>
+                    <MenuItem Header="R">
+                        <MenuItem Header="Revolver" Name="oscillator_revolver" />
+                        <MenuItem Header="Ring of fire" Name="oscillator_ring_of_fire" />
+                        <MenuItem Header="Roteightor" Name="oscillator_roteightor" />
+                    </MenuItem>
+                    <MenuItem Header="S">
+                        <MenuItem Header="Sailboat" Name="oscillator_sailboat" />
+                        <MenuItem Header="Skewed traffic light" Name="oscillator_skewed_traffic_light" />
+                        <MenuItem Header="Snacker" Name="oscillator_snacker" />
+                        <MenuItem Header="Snacker 2" Name="oscillator_snacker_2" />
+                        <MenuItem Header="Star" Name="oscillator_star" />
+                        <MenuItem Header="Swine" Name="oscillator_swine" />
+                    </MenuItem>
+                    <MenuItem Header="T">
+                        <MenuItem Header="Traffic circle" Name="oscillator_traffic_circle" />
+                        <MenuItem Header="Twin bees shuttle" Name="oscillator_twin_bees_shuttle" />
+                        <MenuItem Header="Twirling T-tetsons 2" Name="oscillator_twirling_t_tetsons_2" />
+                        <MenuItem Header="Two pre-L hasslers" Name="oscillator_two_pre_l_hasslers" />
+                    </MenuItem>
+                    <MenuItem Header="U">
+                        <MenuItem Header="Unicycle" Name="oscillator_unicycle" />
+                    </MenuItem>
+                    <MenuItem Header="W">
+                        <MenuItem Header="Why not" Name="oscillator_why_not" />
+                        <MenuItem Header="Windmill" Name="oscillator_windmill" />
+                        <MenuItem Header="Worker bee" Name="oscillator_worker_bee" />
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Spaceships" Name="menu_item_spaceships">
+                    <MenuItem Header="Unbenannt">
+                        <MenuItem Header="37P4H1V0" Name="spaceship_37_p_4_h_1_v_0" />
+                        <MenuItem Header="4-engine Cordership" Name="spaceship_4_engine_cordership" />
+                        <MenuItem Header="44P5H2V0" Name="spaceship_44_p_5_h_2_v_0" />
+                        <MenuItem Header="46P4H1V0" Name="spaceship_46_p_4_h_1_v_0" />
+                        <MenuItem Header="56P6H1V0" Name="spaceship_56_p_6_h_1_v_0" />
+                        <MenuItem Header="58P5H1V1" Name="spaceship_58_p_5_h_1_v_1" />
+                        <MenuItem Header="6-engine Cordership" Name="spaceship_6_engine_cordership" />
+                        <MenuItem Header="60P3H1V0.3" Name="spaceship_60_p_3_h_1_v_0_3" />
+                        <MenuItem Header="60P5H2V0" Name="spaceship_60_v_5_v_2_v_0" />
+                        <MenuItem Header="64P2H1V0" Name="spaceship_64_p_2_h_1_v_0" />
+                        <MenuItem Header="67P5H1V1" Name="spaceship_67_p_5_h_1_v_1" />
+                        <MenuItem Header="7-engine Cordership" Name="spaceship_7_engine_cordership" />
+                        <MenuItem Header="70P5H2V0" Name="spaceship_70_p_5_h_2_v_0" />
+                        <MenuItem Header="77P6H1V1" Name="spaceship_77_p_6_h_1_v_1" />
+                        <MenuItem Header="86P5H1V1" Name="spaceship_86_p_5_h_1_v_1" />
+                    </MenuItem>
+                    <MenuItem Header="B">
+                        <MenuItem Header="B29" Name="spaceship_b_29" />
+                        <MenuItem Header="Barge" Name="spaceship_barge" />
+                        <MenuItem Header="Barge 2" Name="spaceship_barge_2" />
+                        <MenuItem Header="Big glider" Name="spaceship_big_glider" />
+                        <MenuItem Header="Brain" Name="spaceship_brain" />
+                    </MenuItem>
+                    <MenuItem Header="C">
+                        <MenuItem Header="Canada goose" Name="spaceship_canada_goose" />
+                        <MenuItem Header="Coe ship" Name="spaceship_coe_ship" />
+                        <MenuItem Header="Crab" Name="spaceship_crab" />
+                    </MenuItem>
+                    <MenuItem Header="D">
+                        <MenuItem Header="Dragon" Name="spaceship_dragon" />
+                    </MenuItem>
+                    <MenuItem Header="L">
+                        <MenuItem Header="Lightweight Spaceship" Name="spaceship_lightweight_spaceship" />
+                        <MenuItem Header="Loafer" Name="spaceship_loafer" />
+                    </MenuItem>
+                    <MenuItem Header="W">
+                        <MenuItem Header="Weekender" Name="spaceship_weekender" />
+                    </MenuItem>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        
+        <Border Name="gameboard_border" BorderThickness="0.5" ClipToBounds="True" Visibility="Visible" BorderBrush="Black" Height="655" Width="655" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 35, 0, 0">
+            <Grid Name="gameboard" MouseWheel="gameboardZoom">
+                <Grid.RenderTransform>
+                    <ScaleTransform x:Name="zoom" />
+                </Grid.RenderTransform>
+            </Grid>
+        </Border>
+        
+        <StackPanel Width="255" Orientation="Vertical" HorizontalAlignment="Right" Margin="0, 35, 10, 0">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Regel:" FontWeight="Bold" TextAlignment="Center" />
+                <TextBlock Name="textblock_current_rule" Text="Game Of Life (23/3)" TextAlignment="Center" />
+                <TextBlock Text="Figur:" FontWeight="Bold" TextAlignment="Center" Margin="0, 10, 0, 0" />
+                <TextBlock Name="textblock_current_figure" Text="Keine" TextAlignment="Center" />
+            </StackPanel>
+            <Grid HorizontalAlignment="Center" Margin="0, 10, 0, 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Zellen:" FontWeight="Bold" TextAlignment="Center" Grid.Row="0" Grid.Column="0" />
+                <TextBlock Name="textblock_number_of_cells" Text="0" TextAlignment="Center" Grid.Row="0" Grid.Column="1" />
+                <ComboBox Grid.Row="0" Grid.Column="2" Visibility="Hidden" />
+                <TextBlock Text="Länge:" FontWeight="Bold" TextAlignment="Center" Grid.Row="1" Grid.Column="0" />
+                <TextBlock Name="textblock_field_length" Text="0" TextAlignment="Center" Grid.Row="1" Grid.Column="1" />
+                <ComboBox Name="multiply_field_downwards" ToolTip="funktioniert derzeit noch nicht" Grid.Row="1" Grid.Column="2" IsEnabled="False">
+                    <ComboBoxItem Content="vervielfachen" Visibility="Collapsed" IsEnabled="False" IsSelected="True" />
+                </ComboBox>
+                <TextBlock Text="Breite:" FontWeight="Bold" TextAlignment="Center" Grid.Row="2" Grid.Column="0" />
+                <TextBlock Name="textblock_field_width" Text="0" TextAlignment="Center" Grid.Row="2" Grid.Column="1" />
+                <ComboBox Name="multiply_field_sidewards" ToolTip="funktioniert derzeit noch nicht" Grid.Row="2" Grid.Column="2" IsEnabled="False">
+                    <ComboBoxItem Content="vervielfachen" Visibility="Collapsed" IsEnabled="False" IsSelected="True" />
+                </ComboBox>
+            </Grid>
+            <StackPanel Name="stackpanel_input_field_size" Orientation="Horizontal" Margin="0, 10, 0, 0">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Breite: " TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Top" />
+                    <TextBlock Text="Länge: " TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 15, 0, 0" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBox Name="textbox_field_width" KeyDown="NumericEditPreviewKeyDown" GotKeyboardFocus="textbox_GotKeyboardFocus" Height="20"/>
+                    <TextBox Name="textbox_field_length" KeyDown="NumericEditPreviewKeyDown" GotKeyboardFocus="textbox_GotKeyboardFocus" Height="20" Margin="0, 10, 0, 0" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0, 10, 0, 0">
+                <StackPanel Width="205" Orientation="Horizontal">
+                    <Button Click="button_draw_Click" ToolTip="zufälliges Feld zeichnen (Q)" Height="95" Width="95" Padding="10">
+                        <Image Name="image_draw" Stretch="Fill" Source="icon_draw.png" />
+                    </Button>
+                    <Button Name="button_delete" Click="button_delete_field_Click" ToolTip="Feld löschen (E)" IsEnabled="False" Height="95" Width="95" Padding="10" Margin="15, 0, 0,0">
+                        <Image Name="image_delete" Stretch="Fill" Source="icon_delete.png" />
+                    </Button>
+                </StackPanel>
+                <StackPanel Width="205" Orientation="Horizontal" Margin="0, 10, 0, 0">
+                    <Button Name="button_fast_rewind" ToolTip="zurückspulen (A)" IsEnabled="False" Click="button_fast_rewind_Click" Height="30" Width="30">
+                        <Image Name="image_fast_rewind" Stretch="Fill" Source="icon_fast_rewind.png" />
+                    </Button>
+                    <Button Name="button_step_rewind" ToolTip="schrittweise zurückspülen (Shift + A)" IsEnabled="False" Click="button_step_rewind_Click" Height="30" Width="30" Margin="5, 0, 0, 0">
+                        <Image Name="image_step_rewind" Stretch="Fill" Source="icon_step_rewind.png" />
+                    </Button>
+                    <Button Name="button_play_pause" Click="button_play_pause_Click" ToolTip="Start/Stopp (S)" IsEnabled="False" Height="30" Width="30" Margin="5, 0, 0, 0">
+                        <Image Name="image_play_pause" Stretch="Fill" Source="icon_play.png" />
+                    </Button>
+                    <Button Name="button_step" ToolTip="schrittweise abspielen (Shift + S)" IsEnabled="False" Click="button_step_Click" Height="30" Width="30" Margin="5, 0, 0, 0">
+                        <Image Name="image_step" Stretch="Fill" Source="icon_step.png" />
+                    </Button>
+                    <Button Name="button_step_forward" Click="button_step_forward_Click" ToolTip="schrittweise vorspulen (Shift + D)" IsEnabled="False" Height="30" Width="30" Margin="5, 0, 0, 0">
+                        <Image Name="image_step_forward" Stretch="Fill" Source="icon_step_forward.png" />
+                    </Button>
+                    <Button Name="button_fast_forward" ToolTip="vorspulen (D)" IsEnabled="False" Click="button_fast_forward_Click" Height="30" Width="30" Margin="5, 0, 0, 0">
+                        <Image Name="image_fast_forward" Stretch="Fill" Source="icon_fast_forward.png" />
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Width="205" Margin="0, 10, 0, 0">
+                    <Button Name="button_toggle_gridlines" ToolTip="Spielfeldlinien ein-/ausblenden (Y)" Click="button_toggle_gridlines_Click" Height="95" Width="95" Padding="10">
+                        <Image Name="image_toggle_gridlines" Stretch="Fill" Source="icon_gridlines.png" />
+                    </Button>
+                    <Button Name="button_toggle_border" ToolTip="Spielfeldgrenze ein-/ausschalten (X)" Click="button_toggle_border_Click" Height="95" Width="95" Margin="15, 0, 0, 0">
+                        <Image Name="image_toggle_border" Stretch="Fill" Source="icon_border_off.png" />
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
