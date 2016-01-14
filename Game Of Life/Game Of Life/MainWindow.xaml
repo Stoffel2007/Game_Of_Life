@@ -415,14 +415,14 @@
                 <TextBlock Text="Zellen:" FontWeight="Bold" TextAlignment="Center" Grid.Row="0" Grid.Column="0" />
                 <TextBlock Name="textblock_number_of_cells" Text="0" TextAlignment="Center" Grid.Row="0" Grid.Column="1" />
                 <ComboBox Grid.Row="0" Grid.Column="2" Visibility="Hidden" />
-                <TextBlock Text="Länge:" FontWeight="Bold" TextAlignment="Center" Grid.Row="1" Grid.Column="0" />
-                <TextBlock Name="textblock_field_length" Text="0" TextAlignment="Center" Grid.Row="1" Grid.Column="1" />
-                <ComboBox Name="multiply_field_downwards" ToolTip="funktioniert derzeit noch nicht" Grid.Row="1" Grid.Column="2" IsEnabled="False">
+                <TextBlock Text="Breite:" FontWeight="Bold" TextAlignment="Center" Grid.Row="1" Grid.Column="0" />
+                <TextBlock Name="textblock_field_width" Text="0" TextAlignment="Center" Grid.Row="1" Grid.Column="1" />
+                <ComboBox Name="multiply_field_sidewards" ToolTip="funktioniert derzeit noch nicht" Grid.Row="1" Grid.Column="2" IsEnabled="False">
                     <ComboBoxItem Content="vervielfachen" Visibility="Collapsed" IsEnabled="False" IsSelected="True" />
                 </ComboBox>
-                <TextBlock Text="Breite:" FontWeight="Bold" TextAlignment="Center" Grid.Row="2" Grid.Column="0" />
-                <TextBlock Name="textblock_field_width" Text="0" TextAlignment="Center" Grid.Row="2" Grid.Column="1" />
-                <ComboBox Name="multiply_field_sidewards" ToolTip="funktioniert derzeit noch nicht" Grid.Row="2" Grid.Column="2" IsEnabled="False">
+                <TextBlock Text="Länge:" FontWeight="Bold" TextAlignment="Center" Grid.Row="2" Grid.Column="0" />
+                <TextBlock Name="textblock_field_length" Text="0" TextAlignment="Center" Grid.Row="2" Grid.Column="1" />
+                <ComboBox Name="multiply_field_downwards" ToolTip="funktioniert derzeit noch nicht" Grid.Row="2" Grid.Column="2" IsEnabled="False">
                     <ComboBoxItem Content="vervielfachen" Visibility="Collapsed" IsEnabled="False" IsSelected="True" />
                 </ComboBox>
             </Grid>
