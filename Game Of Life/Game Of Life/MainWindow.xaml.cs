@@ -162,7 +162,7 @@ namespace Game_Of_Life
         }
         #endregion
 
-        // Text ields
+        // Text Fields
         #region
         private void textbox_GotKeyboardFocus(object sender, EventArgs e)
         {
