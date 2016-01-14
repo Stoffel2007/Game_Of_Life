@@ -56,7 +56,7 @@
     
     <Grid>
         <Menu Height="25" VerticalAlignment="Top">
-            <MenuItem Header="Anleitung">
+            <MenuItem Header="Shortcuts">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />
@@ -80,39 +80,39 @@
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Kommando" FontWeight="Bold" Grid.Row="0" Grid.Column="0" />
-                    <TextBlock Text="Aktion" FontWeight="Bold" Grid.Row="0" Grid.Column="1" />
+                    <TextBlock Text="Command" FontWeight="Bold" Grid.Row="0" Grid.Column="0" />
+                    <TextBlock Text="Action" FontWeight="Bold" Grid.Row="0" Grid.Column="1" />
                     <TextBlock Text="Q" Grid.Row="1" Grid.Column="0" />
-                    <TextBlock Text="zufälliges Feld zeichnen" Grid.Row="1" Grid.Column="1" />
+                    <TextBlock Text="draws a random field" Grid.Row="1" Grid.Column="1" />
                     <TextBlock Text="E" Grid.Row="2" Grid.Column="0" />
-                    <TextBlock Text="Feld löschen" Grid.Row="2" Grid.Column="1" />
+                    <TextBlock Text="deletes all living cells" Grid.Row="2" Grid.Column="1" />
                     <TextBlock Text="A" Grid.Row="3" Grid.Column="0" />
-                    <TextBlock Text="zurückspulen" Grid.Row="3" Grid.Column="1" />
+                    <TextBlock Text="rewind" Grid.Row="3" Grid.Column="1" />
                     <TextBlock Text="Shift + A" Grid.Row="4" Grid.Column="0" />
-                    <TextBlock Text="schrittweise zurückspulen" Grid.Row="4" Grid.Column="1" />
+                    <TextBlock Text="rewind step by step" Grid.Row="4" Grid.Column="1" />
                     <TextBlock Text="S" Grid.Row="5" Grid.Column="0" />
-                    <TextBlock Text="Start/Stopp" Grid.Row="5" Grid.Column="1" />
+                    <TextBlock Text="starts/stops the program" Grid.Row="5" Grid.Column="1" />
                     <TextBlock Text="Shift + S" Grid.Row="6" Grid.Column="0" />
-                    <TextBlock Text="schrittweise abspielen" Grid.Row="6" Grid.Column="1" />
+                    <TextBlock Text="runs the program step by step" Grid.Row="6" Grid.Column="1" />
                     <TextBlock Text="D" Grid.Row="7" Grid.Column="0" />
-                    <TextBlock Text="vorspulen" Grid.Row="7" Grid.Column="1" />
+                    <TextBlock Text="wind forward" Grid.Row="7" Grid.Column="1" />
                     <TextBlock Text="Shift + D" Grid.Row="8" Grid.Column="0" />
-                    <TextBlock Text="schrittweise vorspulen" Grid.Row="8" Grid.Column="1" />
+                    <TextBlock Text="wind forward step by step" Grid.Row="8" Grid.Column="1" />
                     <TextBlock Text="Y" Grid.Row="9" Grid.Column="0" />
-                    <TextBlock Text="Spielfeldlinien ein-/ausblenden" Grid.Row="9" Grid.Column="1" />
+                    <TextBlock Text="show/hide grid lines" Grid.Row="9" Grid.Column="1" />
                     <TextBlock Text="X" Grid.Row="10" Grid.Column="0" />
-                    <TextBlock Text="Spielfeldgrenze ein-/ausschalten" Grid.Row="10" Grid.Column="1" />
-                    <TextBlock Text="linke Maustaste" Grid.Row="11" Grid.Column="0" />
-                    <TextBlock Text="zeichnen" Grid.Row="11" Grid.Column="1" />
-                    <TextBlock Text="rechte Maustaste" Grid.Row="12" Grid.Column="0" />
-                    <TextBlock Text="radieren" Grid.Row="12" Grid.Column="1" />
-                    <TextBlock Text="Mausrad" Grid.Row="13" Grid.Column="0" />
-                    <TextBlock Text="zoomen" Grid.Row="13" Grid.Column="1" />
+                    <TextBlock Text="enable/disable game board border" Grid.Row="10" Grid.Column="1" />
+                    <TextBlock Text="left mouse button" Grid.Row="11" Grid.Column="0" />
+                    <TextBlock Text="drawing" Grid.Row="11" Grid.Column="1" />
+                    <TextBlock Text="right mouse button" Grid.Row="12" Grid.Column="0" />
+                    <TextBlock Text="erasing" Grid.Row="12" Grid.Column="1" />
+                    <TextBlock Text="mouse wheel" Grid.Row="13" Grid.Column="0" />
+                    <TextBlock Text="zoom in/out" Grid.Row="13" Grid.Column="1" />
                     <TextBlock Text="I, J, K, L" Grid.Row="14" Grid.Column="0" />
-                    <TextBlock Text="Spielfeld verschieben (nur bei Zoom)" Grid.Row="14" Grid.Column="1" />
+                    <TextBlock Text="move game board (only when zoomed in)" Grid.Row="14" Grid.Column="1" />
                 </Grid>
             </MenuItem>
-            <MenuItem Name="menu_rules" Header="Regeln">
+            <MenuItem Name="menu_rules" Header="Rules">
                 <MenuItem Tag="123/36" Header="2x2" />
                 <MenuItem Tag="34/34" Header="34 Life" />
                 <MenuItem Tag="1358/357" Header="Amoeba" />
@@ -142,7 +142,7 @@
                 <MenuItem Tag="35678/4678" Header="Vote 4/5" />
                 <MenuItem Tag="2345/45678" Header="Walled Cities" />
             </MenuItem>
-            <MenuItem Header="Figuren">
+            <MenuItem Header="Patterns">
                 <MenuItem Header="Guns" Name="menu_item_guns">
                     <MenuItem Header="AK-94" Name="gun_ak_94" />
                     <MenuItem Header="B-52 Bomber" Name="gun_b_52_bomber" />
@@ -159,7 +159,7 @@
                     <MenuItem Header="Vacuum" Name="gun_vacuum" />
                 </MenuItem>
                 <MenuItem Header="Oscillators" Name="menu_item_oscillators">
-                    <MenuItem Header="Unbenannt">
+                    <MenuItem Header="Unnamed">
                         <MenuItem Header="104P177" Name="oscillator_104_p_177" />
                         <MenuItem Header="112P51" Name="oscillator_112_p_51" />
                         <MenuItem Header="117P18" Name="oscillator_117_p_18" />
@@ -213,7 +213,7 @@
                         <MenuItem Header="Eureka v2" Name="oscillator_eureka_v_2" />
                     </MenuItem>
                     <MenuItem Header="F">
-                        <MenuItem Header="Figure eight" Name="oscillator_figure_eight" />
+                        <MenuItem Header="Pattern eight" Name="oscillator_pattern_eight" />
                         <MenuItem Header="Fountain" Name="oscillator_fountain" />
                     </MenuItem>
                     <MenuItem Header="G">
@@ -317,7 +317,7 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Spaceships" Name="menu_item_spaceships">
-                    <MenuItem Header="Unbenannt">
+                    <MenuItem Header="Unnamed">
                         <MenuItem Header="37P4H1V0" Name="spaceship_37_p_4_h_1_v_0" />
                         <MenuItem Header="4-engine Cordership" Name="spaceship_4_engine_cordership" />
                         <MenuItem Header="44P5H2V0" Name="spaceship_44_p_5_h_2_v_0" />
@@ -396,10 +396,10 @@
         
         <StackPanel Width="255" Orientation="Vertical" HorizontalAlignment="Right" Margin="0, 35, 10, 0">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Regel:" FontWeight="Bold" TextAlignment="Center" />
+                <TextBlock Text="Rule:" FontWeight="Bold" TextAlignment="Center" />
                 <TextBlock Name="textblock_current_rule" Text="Game Of Life (23/3)" TextAlignment="Center" />
-                <TextBlock Text="Figur:" FontWeight="Bold" TextAlignment="Center" Margin="0, 10, 0, 0" />
-                <TextBlock Name="textblock_current_figure" Text="Keine" TextAlignment="Center" />
+                <TextBlock Text="Pattern:" FontWeight="Bold" TextAlignment="Center" Margin="0, 10, 0, 0" />
+                <TextBlock Name="textblock_current_pattern" Text="None" TextAlignment="Center" />
             </StackPanel>
             <Grid HorizontalAlignment="Center" Margin="0, 10, 0, 0">
                 <Grid.RowDefinitions>
@@ -412,24 +412,24 @@
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Zellen:" FontWeight="Bold" TextAlignment="Center" Grid.Row="0" Grid.Column="0" />
+                <TextBlock Text="Cells:" FontWeight="Bold" TextAlignment="Center" Grid.Row="0" Grid.Column="0" />
                 <TextBlock Name="textblock_number_of_cells" Text="0" TextAlignment="Center" Grid.Row="0" Grid.Column="1" />
                 <ComboBox Grid.Row="0" Grid.Column="2" Visibility="Hidden" />
-                <TextBlock Text="Breite:" FontWeight="Bold" TextAlignment="Center" Grid.Row="1" Grid.Column="0" />
+                <TextBlock Text="Width:" FontWeight="Bold" TextAlignment="Center" Grid.Row="1" Grid.Column="0" />
                 <TextBlock Name="textblock_field_width" Text="0" TextAlignment="Center" Grid.Row="1" Grid.Column="1" />
-                <ComboBox Name="multiply_field_sidewards" ToolTip="funktioniert derzeit noch nicht" Grid.Row="1" Grid.Column="2" IsEnabled="False">
-                    <ComboBoxItem Content="vervielfachen" Visibility="Collapsed" IsEnabled="False" IsSelected="True" />
+                <ComboBox Name="multiply_field_sidewards" ToolTip="currently not working yet" Grid.Row="1" Grid.Column="2" IsEnabled="False">
+                    <ComboBoxItem Content="multiply" Visibility="Collapsed" IsEnabled="False" IsSelected="True" />
                 </ComboBox>
-                <TextBlock Text="Länge:" FontWeight="Bold" TextAlignment="Center" Grid.Row="2" Grid.Column="0" />
+                <TextBlock Text="Length:" FontWeight="Bold" TextAlignment="Center" Grid.Row="2" Grid.Column="0" />
                 <TextBlock Name="textblock_field_length" Text="0" TextAlignment="Center" Grid.Row="2" Grid.Column="1" />
-                <ComboBox Name="multiply_field_downwards" ToolTip="funktioniert derzeit noch nicht" Grid.Row="2" Grid.Column="2" IsEnabled="False">
-                    <ComboBoxItem Content="vervielfachen" Visibility="Collapsed" IsEnabled="False" IsSelected="True" />
+                <ComboBox Name="multiply_field_downwards" ToolTip="currently not working yet" Grid.Row="2" Grid.Column="2" IsEnabled="False">
+                    <ComboBoxItem Content="multiply" Visibility="Collapsed" IsEnabled="False" IsSelected="True" />
                 </ComboBox>
             </Grid>
             <StackPanel Name="stackpanel_input_field_size" Orientation="Horizontal" Margin="0, 10, 0, 0">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Breite: " TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Top" />
-                    <TextBlock Text="Länge: " TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 15, 0, 0" />
+                    <TextBlock Text="Width: " TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Top" />
+                    <TextBlock Text="Length: " TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 15, 0, 0" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <TextBox Name="textbox_field_width" KeyDown="NumericEditPreviewKeyDown" GotKeyboardFocus="textbox_GotKeyboardFocus" Height="20"/>
@@ -438,38 +438,38 @@
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="0, 10, 0, 0">
                 <StackPanel Width="205" Orientation="Horizontal">
-                    <Button Click="button_draw_Click" ToolTip="zufälliges Feld zeichnen (Q)" Height="95" Width="95" Padding="10">
+                    <Button Click="button_draw_Click" ToolTip="draws a random field (Q)" Height="95" Width="95" Padding="10">
                         <Image Name="image_draw" Stretch="Fill" Source="icon_draw.png" />
                     </Button>
-                    <Button Name="button_delete" Click="button_delete_field_Click" ToolTip="Feld löschen (E)" IsEnabled="False" Height="95" Width="95" Padding="10" Margin="15, 0, 0,0">
+                    <Button Name="button_delete" Click="button_delete_field_Click" ToolTip="deletes all living cells (E)" IsEnabled="False" Height="95" Width="95" Padding="10" Margin="15, 0, 0,0">
                         <Image Name="image_delete" Stretch="Fill" Source="icon_delete.png" />
                     </Button>
                 </StackPanel>
                 <StackPanel Width="205" Orientation="Horizontal" Margin="0, 10, 0, 0">
-                    <Button Name="button_fast_rewind" ToolTip="zurückspulen (A)" IsEnabled="False" Click="button_fast_rewind_Click" Height="30" Width="30">
+                    <Button Name="button_fast_rewind" ToolTip="rewind (A)" IsEnabled="False" Click="button_fast_rewind_Click" Height="30" Width="30">
                         <Image Name="image_fast_rewind" Stretch="Fill" Source="icon_fast_rewind.png" />
                     </Button>
-                    <Button Name="button_step_rewind" ToolTip="schrittweise zurückspülen (Shift + A)" IsEnabled="False" Click="button_step_rewind_Click" Height="30" Width="30" Margin="5, 0, 0, 0">
+                    <Button Name="button_step_rewind" ToolTip="rewind step by step (Shift + A)" IsEnabled="False" Click="button_step_rewind_Click" Height="30" Width="30" Margin="5, 0, 0, 0">
                         <Image Name="image_step_rewind" Stretch="Fill" Source="icon_step_rewind.png" />
                     </Button>
-                    <Button Name="button_play_pause" Click="button_play_pause_Click" ToolTip="Start/Stopp (S)" IsEnabled="False" Height="30" Width="30" Margin="5, 0, 0, 0">
+                    <Button Name="button_play_pause" Click="button_play_pause_Click" ToolTip="starts/stops the program (S)" IsEnabled="False" Height="30" Width="30" Margin="5, 0, 0, 0">
                         <Image Name="image_play_pause" Stretch="Fill" Source="icon_play.png" />
                     </Button>
-                    <Button Name="button_step" ToolTip="schrittweise abspielen (Shift + S)" IsEnabled="False" Click="button_step_Click" Height="30" Width="30" Margin="5, 0, 0, 0">
+                    <Button Name="button_step" ToolTip="runs the program step by step (Shift + S)" IsEnabled="False" Click="button_step_Click" Height="30" Width="30" Margin="5, 0, 0, 0">
                         <Image Name="image_step" Stretch="Fill" Source="icon_step.png" />
                     </Button>
-                    <Button Name="button_step_forward" Click="button_step_forward_Click" ToolTip="schrittweise vorspulen (Shift + D)" IsEnabled="False" Height="30" Width="30" Margin="5, 0, 0, 0">
+                    <Button Name="button_step_forward" Click="button_step_forward_Click" ToolTip="wind forward step by step (Shift + D)" IsEnabled="False" Height="30" Width="30" Margin="5, 0, 0, 0">
                         <Image Name="image_step_forward" Stretch="Fill" Source="icon_step_forward.png" />
                     </Button>
-                    <Button Name="button_fast_forward" ToolTip="vorspulen (D)" IsEnabled="False" Click="button_fast_forward_Click" Height="30" Width="30" Margin="5, 0, 0, 0">
+                    <Button Name="button_fast_forward" ToolTip="wind forward (D)" IsEnabled="False" Click="button_fast_forward_Click" Height="30" Width="30" Margin="5, 0, 0, 0">
                         <Image Name="image_fast_forward" Stretch="Fill" Source="icon_fast_forward.png" />
                     </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Width="205" Margin="0, 10, 0, 0">
-                    <Button Name="button_toggle_gridlines" ToolTip="Spielfeldlinien ein-/ausblenden (Y)" Click="button_toggle_gridlines_Click" Height="95" Width="95" Padding="10">
+                    <Button Name="button_toggle_gridlines" ToolTip="show/hide grid lines (Y)" Click="button_toggle_gridlines_Click" Height="95" Width="95" Padding="10">
                         <Image Name="image_toggle_gridlines" Stretch="Fill" Source="icon_gridlines.png" />
                     </Button>
-                    <Button Name="button_toggle_border" ToolTip="Spielfeldgrenze ein-/ausschalten (X)" Click="button_toggle_border_Click" Height="95" Width="95" Margin="15, 0, 0, 0">
+                    <Button Name="button_toggle_border" ToolTip="enable/disable game board border (X)" Click="button_toggle_border_Click" Height="95" Width="95" Margin="15, 0, 0, 0">
                         <Image Name="image_toggle_border" Stretch="Fill" Source="icon_border_off.png" />
                     </Button>
                 </StackPanel>

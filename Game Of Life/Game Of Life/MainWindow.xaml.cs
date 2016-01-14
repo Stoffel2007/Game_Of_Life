@@ -43,18 +43,18 @@ namespace Game_Of_Life
             InitializeButtonImages();
             InitializeTimers(3);
             adjustSizeOfInputBoxes();
-            InitializeFigureClicks();
-            InitializeFigureTags();
+            InitializePatternClicks();
+            InitializePatternTags();
 
             MaxHeight = Height;
             MinHeight = Height;
             MaxWidth = Width;
             MinWidth = Width;
 
-            textblock_current_rule.ToolTip = "Der erste Wert gibt an, bei welcher Anzahl an Nachbarn\n"
-                                           + "eine bereits existierende Zelle weiterlebt.\n\n"
-                                           + "Der zweite Wert gibt an, bei welcher Anzahl an Nachbarn\n"
-                                           + "an einer leeren Stelle eine neue Zelle entsteht.";
+            textblock_current_rule.ToolTip = "The first value is a list of all the numbers of neighbours\n"
+                                           + "that cause a living cell to keep alive.\n\n"
+                                           + "The second value is a list of all the numbers of neighbours\n"
+                                           + "that cause a dead cell to become alive.";
 
             foreach (MenuItem item in menu_rules.Items)
             {
@@ -78,15 +78,15 @@ namespace Game_Of_Life
             zoom.ScaleX = 1;
             zoom.ScaleY = 1;
 
-            int fieldWidth = getValueFromTextbox(textbox_field_width, "Breite");
-            int fieldLength = getValueFromTextbox(textbox_field_length, "Länge");
+            int fieldWidth = getValueFromTextbox(textbox_field_width, "Width");
+            int fieldLength = getValueFromTextbox(textbox_field_length, "Length");
 
             if (fieldLength > 0 && fieldWidth > 0)
             {
                 bool[,] fieldBefore = field;
                 field = getRandomField(fieldLength, fieldWidth);
                 updateFieldLists(fieldBefore);
-                changeContentOfFigureTextblock("Keine");
+                changeContentOfPatternTextblock("None");
 
                 button_play_pause.IsEnabled = true;
                 button_step.IsEnabled = true;
@@ -108,7 +108,7 @@ namespace Game_Of_Life
 
             if (field != null)
             {
-                textblock_current_figure.Text = "Figur: Keine";
+                textblock_current_pattern.Text = "Pattern: None";
                 bool[,] fieldBefore = field;
 
                 field = getEmptyField(field.GetLength(0), field.GetLength(1));
@@ -162,7 +162,7 @@ namespace Game_Of_Life
         }
         #endregion
 
-        // Textfelder
+        // Text ields
         #region
         private void textbox_GotKeyboardFocus(object sender, EventArgs e)
         {
@@ -177,9 +177,9 @@ namespace Game_Of_Life
             textblock_current_rule.Text = ruleName + " (" + ruleStringSurvive + "/" + ruleStringCreate + ")";
         }
 
-        private void changeContentOfFigureTextblock(string figureName)
+        private void changeContentOfPatternTextblock(string patternName)
         {
-            textblock_current_figure.Text = figureName + " (" + field.GetLength(1) + "x" + field.GetLength(0) + ")";
+            textblock_current_pattern.Text = patternName + " (" + field.GetLength(1) + "x" + field.GetLength(0) + ")";
         }
 
         private void NumericEditPreviewKeyDown(object sender, KeyEventArgs e)
@@ -250,7 +250,7 @@ namespace Game_Of_Life
         }
         #endregion
 
-        // sonstige UI-Elemente
+        // Other UI elements
         #region
         private void toggle_gridlines(object sender, EventArgs e)
         {
@@ -327,12 +327,12 @@ namespace Game_Of_Life
             int maxFactorWidth = maxFieldSize / width;
 
             ComboBoxItem headerLength = new ComboBoxItem();
-            headerLength.Content = "vervielfachen";
+            headerLength.Content = "multiply";
             headerLength.Visibility = Visibility.Collapsed;
             headerLength.IsSelected = true;
 
             ComboBoxItem headerWidth = new ComboBoxItem();
-            headerWidth.Content = "vervielfachen";
+            headerWidth.Content = "multiply";
             headerWidth.Visibility = Visibility.Collapsed;
             headerWidth.IsSelected = true;
 
@@ -347,7 +347,8 @@ namespace Game_Of_Life
                 ComboBoxItem newItem = new ComboBoxItem();
                 newItem.Content = "x" + i;
                 newItem.Tag = i;
-                //newItem.Selected += multiplyFieldDownwards;
+                // currently not working yet
+                // newItem.Selected += multiplyFieldDownwards;
                 multiply_field_downwards.Items.Add(newItem);
             }
 
@@ -356,7 +357,8 @@ namespace Game_Of_Life
                 ComboBoxItem newItem = new ComboBoxItem();
                 newItem.Content = "x" + i;
                 newItem.Tag = i;
-                //newItem.Selected += multiplyFieldSidewards;
+                // currently not working yet
+                // newItem.Selected += multiplyFieldSidewards;
                 multiply_field_sidewards.Items.Add(newItem);
             }
         }
@@ -370,7 +372,7 @@ namespace Game_Of_Life
         }
         #endregion
 
-        // Zeichnen/Radieren
+        // Drawing/Erasing
         #region
         private void drawCell(object sender, MouseEventArgs e)
         {
@@ -446,7 +448,7 @@ namespace Game_Of_Life
         }
         #endregion
 
-        // Programmlogik
+        // Program logic
         #region
         private bool isAliveNextRound(bool isAlive, int numberOfNeighbours)
         {
@@ -539,7 +541,7 @@ namespace Game_Of_Life
         {
             if (button_fast_rewind.IsEnabled)
             {
-                nextFields.add(field, textblock_current_figure.Text, borderIsActive);
+                nextFields.add(field, textblock_current_pattern.Text, borderIsActive);
                 Field newField = previousFields.drop();
                 int lengthBefore = field.GetLength(0);
                 int widthBefore = field.GetLength(1);
@@ -549,20 +551,20 @@ namespace Game_Of_Life
                 button_step_forward.IsEnabled = true;
                 button_delete.IsEnabled = !fieldsAreEqual(field, getEmptyField(field.GetLength(0), field.GetLength(1)));
 
-                // kein vorheriges Feld gespeichert
-                // => "Zurück"-Button deaktivieren
+                // No previous field is saved.
+                // => disable the "back" button
                 if (previousFields.firstField == null)
                 {
                     button_fast_rewind.IsEnabled = false;
                     button_step_rewind.IsEnabled = false;
                 }
 
-                // Feld-Größe hat sich geändert
-                // => neues Feld zeichnen
+                // field size has changed
+                // => draw new field
                 if (lengthBefore != field.GetLength(0) || widthBefore != field.GetLength(1))
                     drawNewField();
 
-                textblock_current_figure.Text = newField.name;
+                textblock_current_pattern.Text = newField.name;
 
                 printField();
             }
@@ -587,7 +589,7 @@ namespace Game_Of_Life
         {
             if (button_fast_forward.IsEnabled)
             {
-                previousFields.add(field, textblock_current_figure.Text, borderIsActive);
+                previousFields.add(field, textblock_current_pattern.Text, borderIsActive);
                 int lengthBefore = field.GetLength(0);
                 int widthBefore = field.GetLength(1);
                 Field newField = nextFields.drop();
@@ -597,20 +599,20 @@ namespace Game_Of_Life
                 button_step_rewind.IsEnabled = true;
                 button_delete.IsEnabled = !fieldsAreEqual(field, getEmptyField(field.GetLength(0), field.GetLength(1)));
 
-                // kein späteres Feld mehr vorhanden
-                // => "Vorwärts"-Button deaktivieren
+                // No next field is saved.
+                // => disable the "next" button
                 if (nextFields.firstField == null)
                 {
                     button_fast_forward.IsEnabled = false;
                     button_step_forward.IsEnabled = false;
                 }
 
-                // Feld-Größe hat sich geändert
-                // => neues Feld zeichnen
+                // field size has changed
+                // => draw new field
                 if (lengthBefore != field.GetLength(0) || widthBefore != field.GetLength(1))
                     drawNewField(newField.name);
 
-                textblock_current_figure.Text = newField.name;
+                textblock_current_pattern.Text = newField.name;
 
                 printField();
             }
@@ -619,7 +621,7 @@ namespace Game_Of_Life
         }
         #endregion
 
-        // Field-Funktionen
+        // Field functions
         #region
         public bool fieldsAreEqual(bool[,] field1, bool[,] field2)
         {
@@ -788,9 +790,9 @@ namespace Game_Of_Life
             field = multipliedField;
             updateFieldLists(fieldBefore);
 
-            string temp = textblock_current_figure.Text;
+            string temp = textblock_current_pattern.Text;
             drawNewField();
-            textblock_current_figure.Text = temp;
+            textblock_current_pattern.Text = temp;
 
             printField();
         }
@@ -810,9 +812,9 @@ namespace Game_Of_Life
             field = multipliedField;
             updateFieldLists(fieldBefore);
 
-            string temp = textblock_current_figure.Text;
+            string temp = textblock_current_pattern.Text;
             drawNewField();
-            textblock_current_figure.Text = temp;
+            textblock_current_pattern.Text = temp;
 
             printField();
         }
@@ -821,7 +823,7 @@ namespace Game_Of_Life
         {
             if (!fieldsAreEqual(fieldBefore, field) && fieldBefore != null)
             {
-                previousFields.add(fieldBefore, textblock_current_figure.Text, borderIsActive);
+                previousFields.add(fieldBefore, textblock_current_pattern.Text, borderIsActive);
                 if (field != null)
                 {
                     button_fast_rewind.IsEnabled = true;
@@ -837,9 +839,9 @@ namespace Game_Of_Life
             button_delete.IsEnabled = !fieldsAreEqual(field, getEmptyField(field.GetLength(0), field.GetLength(1)));
         }
 
-        private void drawNewField(string figureName = "Keine")
+        private void drawNewField(string patternName = "None")
         {
-            changeContentOfFigureTextblock(figureName);
+            changeContentOfPatternTextblock(patternName);
 
             gameboard.Children.Clear();
             gameboard.RowDefinitions.Clear();
@@ -931,7 +933,7 @@ namespace Game_Of_Life
         }
         #endregion
 
-        // Hilfsfunktionen
+        // Help functions
         #region
         private void newRuleSelected(object sender, EventArgs e)
         {
@@ -1008,26 +1010,26 @@ namespace Game_Of_Life
             path_icon_border_off = new BitmapImage(new Uri("icon_border_off.png", UriKind.Relative));
         }
 
-        private void InitializeFigureClicks()
+        private void InitializePatternClicks()
         {
             foreach (MenuItem item in menu_item_guns.Items)
-                item.Click += newFigureClick;
+                item.Click += newPatternClick;
 
             foreach (MenuItem item in menu_item_oscillators.Items)
             {
                 foreach (MenuItem subItem in item.Items)
-                    subItem.Click += newFigureClick;
+                    subItem.Click += newPatternClick;
             }
 
             foreach (MenuItem item in menu_item_spaceships.Items)
                 foreach(MenuItem subItem in item.Items)
-                    subItem.Click += newFigureClick;
+                    subItem.Click += newPatternClick;
         }
         #endregion
 
-        // Figuren
+        // Patterns
         #region
-        private void printNewFigure(object sender, string newField, int oldLength, int oldWidth, int newLength, int newWidth, int x, int y, bool activateBorder)
+        private void printNewPattern(object sender, string newField, int oldLength, int oldWidth, int newLength, int newWidth, int x, int y, bool activateBorder)
         {
             toggleTimer();
 
@@ -1046,10 +1048,10 @@ namespace Game_Of_Life
             printField();
         }
 
-        private void newFigureClick(object sender, EventArgs e)
+        private void newPatternClick(object sender, EventArgs e)
         {
             object[] tag = (object[])(sender as MenuItem).Tag;
-            string figure = (string)tag[0];
+            string pattern = (string)tag[0];
             int oldLength = (int)tag[1];
             int oldWidth = (int)tag[2];
             int newLength = (int)tag[3];
@@ -1057,10 +1059,10 @@ namespace Game_Of_Life
             int x = (int)tag[5];
             int y = (int)tag[6];
             bool activateBorder = (bool)tag[7];
-            printNewFigure(sender, figure, oldLength, oldWidth, newLength, newWidth, x, y, activateBorder);
+            printNewPattern(sender, pattern, oldLength, oldWidth, newLength, newWidth, x, y, activateBorder);
         }
 
-        private void InitializeFigureTags()
+        private void InitializePatternTags()
         {
             // Guns
             #region
@@ -1159,7 +1161,7 @@ namespace Game_Of_Life
             #region
             string oscillator;
 
-            // Unbenannt
+            // Unnamed
             #region
             oscillator = @"16bo12bo16b$9b2o24b2o9b$8b3o3b2o14b2o3b3o8b$14b2ob2o8b2ob2o14b$16bo12b
                            o16b4$2bo40bo2b$b2o40b2o$b2o40b2ob4$2b2o38b2o2b$2b2o38b2o2b$o3bo36bo3b
@@ -1389,7 +1391,7 @@ namespace Game_Of_Life
             // F
             #region
             oscillator = "2o4b$2obo2b$4bo$bo4b$2bob2o$4b2o";
-            oscillator_figure_eight.Tag = new object[] { oscillator, 6, 6, 12, 12, 3, 3, false };
+            oscillator_pattern_eight.Tag = new object[] { oscillator, 6, 6, 12, 12, 3, 3, false };
 
             oscillator = @"9bo9b2$3b2obo5bob2o3b$3bo5bo5bo3b$4b2ob2ob2ob2o4b2$6b2o3b2o6b$2o15b2o$
                            o2bo3bobobo3bo2bo$b3ob9ob3o$4bo4bo4bo4b$3b2o9b2o3b$3bo11bo3b$5bo7bo5b$
@@ -1897,7 +1899,7 @@ namespace Game_Of_Life
             #region
             string spaceship;
 
-            // Unbenannt
+            // Unnamed
             #region
             spaceship = @"bo$bo8bo$obo5bo3bo$8bo3b2o$5bob2o5b2o$b6o2bo6bo$2b2o6bo3b3o$10bo3bob2o
                           $13bo$18bo$17bo$17bo";
