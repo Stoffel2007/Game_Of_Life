@@ -1391,7 +1391,7 @@ namespace Game_Of_Life
             // F
             #region
             oscillator = "2o4b$2obo2b$4bo$bo4b$2bob2o$4b2o";
-            oscillator_pattern_eight.Tag = new object[] { oscillator, 6, 6, 12, 12, 3, 3, false };
+            oscillator_figure_eight.Tag = new object[] { oscillator, 6, 6, 12, 12, 3, 3, false };
 
             oscillator = @"9bo9b2$3b2obo5bob2o3b$3bo5bo5bo3b$4b2ob2ob2ob2o4b2$6b2o3b2o6b$2o15b2o$
                            o2bo3bobobo3bo2bo$b3ob9ob3o$4bo4bo4bo4b$3b2o9b2o3b$3bo11bo3b$5bo7bo5b$
