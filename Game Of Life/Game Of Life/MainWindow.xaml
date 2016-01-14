@@ -360,7 +360,7 @@
             </MenuItem>
         </Menu>
         
-        <Border Name="gameboard_border" BorderThickness="0.5" ClipToBounds="True" Visibility="Visible" BorderBrush="Black" Height="655" Width="655" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 35, 0, 0">
+        <Border Name="gameboard_border" BorderThickness="1" ClipToBounds="True" Visibility="Visible" BorderBrush="Black" Height="655" Width="655" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 35, 0, 0">
             <Grid Name="gameboard" MouseWheel="gameboardZoom">
                 <Grid.RenderTransform>
                     <ScaleTransform x:Name="zoom" />
