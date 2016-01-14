@@ -69,6 +69,10 @@ namespace Game_Of_Life
         #region
         private void button_draw_Click(object sender, EventArgs e)
         {
+            /*SettingsWindow window2 = new SettingsWindow();
+            window2.Owner = this;
+            window2.ShowDialog();*/
+
             toggleTimer();
             
             zoom.ScaleX = 1;
@@ -2037,13 +2041,61 @@ namespace Game_Of_Life
 
             // D
             #region
+            spaceship = @"7bo7b$6bobo6b$5bo3bo5b$6b3o6b2$4b2o3b2o4b$2bo3bobo3bo2b$b2o3bobo3b2ob$
+                          o5bobo5bo$bob2obobob2obo";
+            spaceship_dart.Tag = new object[] { spaceship, 10, 15, 40, 17, 29, 1, false };
+
             spaceship = @"12bo16b$12b2o14bo$10bob2o5bobo4b2o$5bo3bo3b3o2bo4bo5b$2o3bo2bo6bobo5b3
                           o2bo$2o3bob2o6bo3bobobo5b$2o3bo10bobo7b2o$5b2o14bo6bo$7bo12bobo6b$7bo1
                           2bobo6b$5b2o14bo6bo$2o3bo10bobo7b2o$2o3bob2o6bo3bobobo5b$2o3bo2bo6bobo
                           5b3o2bo$5bo3bo3b3o2bo4bo5b$10bob2o5bobo4b2o$12b2o14bo$12bo";
             spaceship_dragon.Tag = new object[] { spaceship, 18, 29, 20, 50, 1, 20, false };
+            #endregion
 
-            spaceship = @"";
+            // E
+            #region
+            spaceship = @"bo2bo5b2o$o8b4o$o3bo3b2ob2o$4o5b2o4$11b2o$2b3o7b2o$2bo6bo2bo$2bobo6bo$
+                          3b2o3b2o3$bo2bo$o$o3bo$4o";
+            spaceship_ecologist.Tag = new object[] { spaceship, 18, 14, 21, 60, 1, 41, false };
+
+            spaceship = "8bo7b$7b4o5b$2bo3bo3b2ob2ob$b4o5bo2b2ob$o3bo7bo2bo$bobo2bo9b$5bo";
+            spaceship_edge_repair_spaceship_1.Tag = new object[] { spaceship, 7, 16, 40, 18, 32, 1, false };
+
+            spaceship = @"obo19b$o21b$obo2bo2bo13b$3bo18b$4bob2obo12b$5b3obo12b$4bo4bo2bob2o6b$b
+                          o3b2o3bob4o6b$b2o2bo2bob2o4bo4bo$bo8b2o4bo2b3o$6b2o3b2o3bo2b2o";
+            spaceship_edge_repair_spaceship_2.Tag = new object[] { spaceship, 11, 22, 15, 50, 2, 26, false };
+
+            spaceship = @"8bo12b$6b2obo11b$4b2o3bo11b$3bo3b2o12b$2bo4b2obo10b$bo2b2ob3obo9b$bo19
+                          b$3bobo3b2o10b$2o3bobo13b$o3bo3b2o11b$bo2b2o2bo2bo9b$4b2o3bo8bo2b$10bo
+                          bo3bobobo$12b2ob3o2bo$12b2o4b2ob$13bob2o4b2$11bobo7b$11bo9b$11b3o7b$12
+                          bobo";
+            spaceship_enterprise.Tag = new object[] { spaceship, 21, 21, 70, 70, 48, 48, false };
+            #endregion
+
+            // F
+            #region
+            spaceship = @"2bo31b$bobo30b$bobo22bobo3bob$bo23b2obobo2bo$11b3o8bo9bob$2o9b2o2bob2o
+                          3bo2b4o5b$bobo9b4o2bobo2b2o4b2o2b$b2o8bo2bo3b3o5b3o5b$2bo7bo4bo2b2o2b2
+                          o2bo2bo4b$3bo2bo3bo4bo2b3obobo4b2o3b$7bob2o4bo2b4o5bo6b$4b2o3b2o4bo2b4
+                          o5bo6b$4bobo3bo4bo2b3obobo4b2o3b$3b2o5bo4bo2b2o2b2o2bo2bo4b$4bobo4bo2b
+                          o3b3o5b3o5b$5bo7b4o2bobo2b2o4b2o2b$11b2o2bob2o3bo2b4o5b$11b3o8bo9bob$2
+                          5b2obobo2bo$26bobo3bo";
+            spaceship_fly.Tag = new object[] { spaceship, 20, 34, 22, 60, 1, 25, false };
+            #endregion
+
+            // H
+            #region
+            spaceship = @"5o13b$o4bo7b2o3b$o11b2ob3o$bo9b2ob4o$3b2o3b2ob2o2b2ob$5bo4bo2bo4b$6bob
+                          obobo5b$7bo10b$7bo10b$6bobobobo5b$5bo4bo2bo4b$3b2o3b2ob2o2b2ob$bo9b2ob
+                          4o$o11b2ob3o$o4bo7b2o3b$5o";
+            spaceship_hammerhead.Tag = new object[] { spaceship, 16, 18, 22, 50, 3, 31, false };
+
+            spaceship = "3b2o2b$bo4bo$o6b$o5bo$6o";
+            spaceship_heavyweight_spaceship.Tag = new object[] { spaceship, 5, 7, 9, 30, 1, 22, false };
+
+            spaceship = @"4o5bo2bo$o3bo3bo4b$o7bo3bo$bo2bo3b4ob2$5b2o6b$5b2o6b$5b2o6b2$bo2bo3b4o
+                          b$o7bo3bo$o3bo3bo4b$4o5bo2bo";
+            spaceship_hivenudger.Tag = new object[] { spaceship, 13, 13, 17, 40, 2, 26, false };
             #endregion
 
             // L
@@ -2053,6 +2105,39 @@ namespace Game_Of_Life
 
             spaceship = "b2o2bob2o$o2bo2b2o$bobo$2bo$8bo$6b3o$5bo$6bo$7b2o";
             spaceship_loafer.Tag = new object[] { spaceship, 9, 9, 12, 25, 2, 15, false };
+
+            spaceship = @"11b3o$11bo$2o2bobo5bo2b2o$obob2o9b2o$o4bo2bo2b2o$6bo5b2o$2b2o7bo2bo$2b
+                          2o$13bo16b3o$20b3o7bo$20bo10bo2b2o$9b2o2bobo5bo2b2o8b2o$9bobob2o9b2o4b
+                          2o$9bo4bo2bo2b2o9b2o$15bo5b2o7bo2bo$11b2o7bo2bo$11b2o19bo2bo$22bo9bo3b
+                          o$33b3obo$38bo$18b2o2bobo13bo$18bobob2o13bo$18bo4bo2b2o13b2o$24bo3bo6b
+                          2o2b2o2bo$20b2o6bo6bo2bo$20b2o4bobo4b2o$27bo5bo3bo3bo$28bo2bo4b2o$29b2
+                          o3bo5bobo$33bo8b2o$33bo4bo$32bo3bo$32bo5b2o$33bo5bo";
+            spaceship_lobster.Tag = new object[] { spaceship, 34, 44, 70, 70, 35, 25, false };
+            #endregion
+
+            // M
+            #region
+            spaceship = "3bo2b$bo3bo$o5b$o4bo$5o";
+            spaceship_middleweight_spaceship.Tag = new object[] { spaceship, 5, 6, 9, 30, 1, 23, false };
+            #endregion
+
+            // N
+            #region
+            spaceship = @"10b2obo7b$6b3obob3o6b$2bobo10bo3b2o$2o4b2o5bo3b4o$2bob2o2bo4b3obo3b$8b
+                          o4bo7b$2bob2o2bo4b3obo3b$2o4b2o5bo3b4o$2bobo10bo3b2o$6b3obob3o6b$10b2o
+                          bo";
+            spaceship_non_monotonic_spaceship_1.Tag = new object[] { spaceship, 11, 21, 15, 50, 2, 28, false };
+            #endregion
+
+            // O
+            #region
+            spaceship = @"3b2o9b$3bobo8b$3bo10b$2obo10b$o4bo8b$ob2o6b3ob$5b3o4b2o$6b3obobob$13bo
+                          $6bobo5b$5b2obo5b$6bo7b$4b2obo6b$7bo6b$5b2o";
+            spaceship_orion.Tag = new object[] { spaceship, 15, 14, 50, 50, 34, 35, false };
+
+            spaceship = @"b2o10b$2o11b$2bo10b$4bo4b3ob$4b3o4b2o$5b3obobob$12bo$5bobo5b$4b2obo5b$
+                          5bo7b$3b2obo6b$6bo6b$4b2o";
+            spaceship_orion_2.Tag = new object[] { spaceship, 13, 13, 50, 50, 36, 36, false };
             #endregion
 
             // W

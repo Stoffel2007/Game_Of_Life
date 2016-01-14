@@ -347,11 +347,37 @@
                         <MenuItem Header="Crab" Name="spaceship_crab" />
                     </MenuItem>
                     <MenuItem Header="D">
+                        <MenuItem Header="Dart" Name="spaceship_dart" />
                         <MenuItem Header="Dragon" Name="spaceship_dragon" />
+                    </MenuItem>
+                    <MenuItem Header="E">
+                        <MenuItem Header="Ecologist" Name="spaceship_ecologist" />
+                        <MenuItem Header="Edge-repair spaceship 1" Name="spaceship_edge_repair_spaceship_1" />
+                        <MenuItem Header="Edge-repair spaceship 2" Name="spaceship_edge_repair_spaceship_2" />
+                        <MenuItem Header="Enterprise" Name="spaceship_enterprise" />
+                    </MenuItem>
+                    <MenuItem Header="F">
+                        <MenuItem Header="Fly" Name="spaceship_fly" />
+                    </MenuItem>
+                    <MenuItem Header="H">
+                        <MenuItem Header="Hammerhead" Name="spaceship_hammerhead" />
+                        <MenuItem Header="Heavyweight spaceship" Name="spaceship_heavyweight_spaceship" />
+                        <MenuItem Header="Hivenudger" Name="spaceship_hivenudger" />
                     </MenuItem>
                     <MenuItem Header="L">
                         <MenuItem Header="Lightweight Spaceship" Name="spaceship_lightweight_spaceship" />
                         <MenuItem Header="Loafer" Name="spaceship_loafer" />
+                        <MenuItem Header="Lobster" Name="spaceship_lobster" />
+                    </MenuItem>
+                    <MenuItem Header="M">
+                        <MenuItem Header="Middleweight spaceship" Name="spaceship_middleweight_spaceship" />
+                    </MenuItem>
+                    <MenuItem Header="N">
+                        <MenuItem Header="Non-monotonic spaceship 1" Name="spaceship_non_monotonic_spaceship_1" />
+                    </MenuItem>
+                    <MenuItem Header="O">
+                        <MenuItem Header="Orion" Name="spaceship_orion" />
+                        <MenuItem Header="Orion 2" Name="spaceship_orion_2" />
                     </MenuItem>
                     <MenuItem Header="W">
                         <MenuItem Header="Weekender" Name="spaceship_weekender" />
