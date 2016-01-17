@@ -69,10 +69,6 @@ namespace Game_Of_Life
         #region
         private void button_draw_Click(object sender, EventArgs e)
         {
-            /*SettingsWindow window2 = new SettingsWindow();
-            window2.Owner = this;
-            window2.ShowDialog();*/
-
             toggleTimer();
             
             zoom.ScaleX = 1;
@@ -170,11 +166,13 @@ namespace Game_Of_Life
             box.SelectAll();
         }
 
-        private void changeContentOfRuleTextblock(object sender, string ruleName = "")
+        private void changeContentOfRuleTextblock(object sender, string text = "")
         {
-            if (ruleName == "")
-                ruleName = (sender as MenuItem).Header.ToString();
-            textblock_current_rule.Text = ruleName + " (" + ruleStringSurvive + "/" + ruleStringCreate + ")";
+            if (text == "")
+                text = (sender as MenuItem).Header.ToString();
+            else
+                text += " (" + ruleStringSurvive + "/" + ruleStringCreate + ")";
+            textblock_current_rule.Text = text;
         }
 
         private void changeContentOfPatternTextblock(string patternName)
@@ -2140,6 +2138,46 @@ namespace Game_Of_Life
             spaceship = @"b2o10b$2o11b$2bo10b$4bo4b3ob$4b3o4b2o$5b3obobob$12bo$5bobo5b$4b2obo5b$
                           5bo7b$3b2obo6b$6bo6b$4b2o";
             spaceship_orion_2.Tag = new object[] { spaceship, 13, 13, 50, 50, 36, 36, false };
+            #endregion
+
+            // P
+            #region
+            spaceship = @"3b3o10b3o23b3o10b3o3b$4bobo8bobo25bobo8bobo4b$6bo8bo29bo8bo6b$bob5o6b5
+                          obo19bob5o6b5obob$bob2o3b2o2b2o3b2obo19bob2o3b2o2b2o3b2obob$2o5b3o2b3o
+                          5b2o17b2o5b3o2b3o5b2o$5b2ob2o2b2ob2o27b2ob2o2b2ob2o5b2$4bo12bo25bo12bo
+                          4b$5b3o6b3o27b3o6b3o5b$4b4o6b4o25b4o6b4o4b$3b2o12b2o23b2o12b2o3b$4bo12
+                          bo25bo12bo4b$2b3o12b3o21b3o12b3o2b$2bo16bo21bo16bo2b$5bo10bo27bo10bo5b
+                          $3bobo10bobo23bobo10bobo3b$2bo3b2o6b2o3bo21bo3b2o6b2o3bo2b$3bo5bo2bo5b
+                          o23bo5bo2bo5bo3b$9bo2bo35bo2bo9b$bob2o4bo2bo4b2obo19bob2o4bo2bo4b2obob
+                          $bo3b3obo2bob3o3bo19bo3b3obo2bob3o3bob$2bo6bo2bo6bo21bo6bo2bo6bo2b$bo2
+                          b2o3bo2bo3b2o2bo19bo2b2o3bo2bo3b2o2bob$bo2b2obobo2bobob2o2bo19bo2b2obo
+                          bo2bobob2o2bob$5bo2bo4bo2bo27bo2bo4bo2bo5b$6bobo4bobo29bobo4bobo6b$27b
+                          o5bo27b$4b2obob4obob2o9bo5bo9b2obob4obob2o4b$10b2o14bobo3bobo14b2o10b$
+                          2bob2o10b2obo7bo5bo7bob2o10b2obo2b$2o2bo3b2o2b2o3bo2b2o5bo5bo5b2o2bo3b
+                          2o2b2o3bo2b2o$b2obo12bob2o19b2obo12bob2ob$3b2obo8bob2o23b2obo8bob2o3b$
+                          4bo2bo6bo2bo25bo2bo6bo2bo4b$b2o2bo2bo4bo2bo2b2o4b2o7b2o4b2o2bo2bo4bo2b
+                          o2b2ob$bo5b2o4b2o5bo5bobo3bobo5bo5b2o4b2o5bob$b3o3bo6bo3b3o6bo5bo6b3o3
+                          bo6bo3b3ob$3b4o8b4o23b4o8b4o3b$4bo2bo6bo2bo25bo2bo6bo2bo4b$4bo12bo25bo
+                          12bo4b$4bob2o6b2obo25bob2o6b2obo4b$5bo10bo27bo10bo";
+            spaceship_p_15_pre_pulsar_spaceship.Tag = new object[] { spaceship, 43, 61, 100, 63, 56, 1, false };
+
+            spaceship = @"31bo5bo31b$30b3o3b3o30b4$2b2o5b2o5b2o5b2o19b2o5b2o5b2o5b2o2b$o3bo3bo2b
+                          o3bo2bo3bo3bo15bo3bo3bo2bo3bo2bo3bo3bo$o3bobob3o5b3obobo3bo15bo3bobob3
+                          o5b3obobo3bo$o5b2o2b3ob3o2b2o5bo15bo5b2o2b3ob3o2b2o5bo$2ob3o15b3ob2o15
+                          b2ob3o15b3ob2o$o25bo15bo25bo$bo3bo15bo3bo17bo3bo15bo3bob$2bo2bo15bo2bo
+                          19bo2bo15bo2bo";
+            spaceship_pre_pulsar_spaceship.Tag = new object[] { spaceship, 13, 69, 50, 75, 36, 3, false };
+
+            spaceship = @"3bo7b$bo2bo6b$o3bo6b$o3bo6b$2obo7b$5b2o4b$2bo2b2o4b$4bo6b$7b3ob$6b5o$5
+                          b2ob3o$6b2o";
+            spaceship_pushalong_1.Tag = new object[] { spaceship, 12, 11, 16, 40, 1, 28, false };
+            #endregion
+
+            // S
+            #region
+            spaceship = @"bo2bo15b$o19b$o3bo15b$4o9b2o5b$6b3o5b2o4b$6b2ob2o6b3o$6b3o5b2o4b$4o9b2
+                          o5b$o3bo15b$o19b$bo2bo";
+            spaceship_schick_engine.Tag = new object[] { spaceship, 11, 20, 13, 40, 1, 19, false };
             #endregion
 
             // W

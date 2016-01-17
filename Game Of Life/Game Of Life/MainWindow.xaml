@@ -379,6 +379,14 @@
                         <MenuItem Header="Orion" Name="spaceship_orion" />
                         <MenuItem Header="Orion 2" Name="spaceship_orion_2" />
                     </MenuItem>
+                    <MenuItem Header="P">
+                        <MenuItem Header="P15 pre-pulsar spaceship" Name="spaceship_p_15_pre_pulsar_spaceship" />
+                        <MenuItem Header="Pre-pulsar spaceship" Name="spaceship_pre_pulsar_spaceship" />
+                        <MenuItem Header="Pushalong 1" Name="spaceship_pushalong_1" />
+                    </MenuItem>
+                    <MenuItem Header="S">
+                        <MenuItem Header="Schick engine" Name="spaceship_schick_engine" />
+                    </MenuItem>
                     <MenuItem Header="W">
                         <MenuItem Header="Weekender" Name="spaceship_weekender" />
                     </MenuItem>
