@@ -386,9 +386,23 @@
                     </MenuItem>
                     <MenuItem Header="S">
                         <MenuItem Header="Schick engine" Name="spaceship_schick_engine" />
+                        <MenuItem Header="Seal" Name="spaceship_seal" />
+                        <MenuItem Header="Sidecar" Name="spaceship_sidecar" />
+                        <MenuItem Header="Snail" Name="spaceship_snail" />
+                        <MenuItem Header="Sparky" Name="spaceship_sparky" />
+                        <MenuItem Header="Spider" Name="spaceship_spider" />
+                        <MenuItem Header="Swan" Name="spaceship_swan" />
+                    </MenuItem>
+                    <MenuItem Header="T">
+                        <MenuItem Header="Turtle" Name="spaceship_turtle" />
                     </MenuItem>
                     <MenuItem Header="W">
+                        <MenuItem Header="Wasp" Name="spaceship_wasp" />
                         <MenuItem Header="Weekender" Name="spaceship_weekender" />
+                        <MenuItem Header="Wing" Name="spaceship_wing" />
+                    </MenuItem>
+                    <MenuItem Header="X">
+                        <MenuItem Header="X66" Name="spaceship_x_66" />
                     </MenuItem>
                 </MenuItem>
             </MenuItem>

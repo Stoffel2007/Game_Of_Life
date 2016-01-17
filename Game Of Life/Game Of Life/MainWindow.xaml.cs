@@ -2178,13 +2178,68 @@ namespace Game_Of_Life
             spaceship = @"bo2bo15b$o19b$o3bo15b$4o9b2o5b$6b3o5b2o4b$6b2ob2o6b3o$6b3o5b2o4b$4o9b2
                           o5b$o3bo15b$o19b$bo2bo";
             spaceship_schick_engine.Tag = new object[] { spaceship, 11, 20, 13, 40, 1, 19, false };
+
+            spaceship = @"2b2o30b$b3ob3o26b$3bo3b2o25b$2ob2o2bo2bobo21b$o6bob4o21b$6b2obo2bo21b$
+                          o4b2o3bob2o20b$2o8bobo2bo18b$o2b5ob3o4bo17b$bo9bo4bo17b$b2obo2bo3bo3bo
+                          18b$2bo9b2o20b$9b2o2b2o4bo14b$2bo3b2obo4b3o2bo14b$3b2obob5o5bob2o12b$7
+                          b2ob2ob2ob2o2b3o11b$17bobo4bo9b$8b2o4bobo3b6o8b$13bo7b2o11b$13bo3bo16b
+                          $13bo4bo3b3o6bo2b$14b5o3b2ob2o2b2ob2o$17b2obo2bob2o2bo4b$16b2o5bo4bo2b
+                          3o$15b3obobobobo8b$22bo2bo8b$18bobo13b$19bo14b2$21b3o10b$21b3o10b2$20b
+                          2o12b$20b2o12b$21bo";
+            spaceship_seal.Tag = new object[] { spaceship, 35, 34, 70, 70, 34, 35, false };
+
+            spaceship = "bo6b$o5bob$o5bob$5obob2$4b2o2b$2bo4bo$bo6b$bo5bo$b6o";
+            spaceship_sidecar.Tag = new object[] { spaceship, 10, 8, 14, 30, 1, 21, false };
+
+            spaceship = @"bo36b$bo36b$o37b$b3o17b3o3b3o8b$b2obo9bo3bobo6b3o8b$2bo11b2obo7bo4b4o4
+                          b$6bo6bo3bobo3b2obo5b2o4b$3bo2bob3o3b2o9bo8b2obo$3b2obo5bo5bo17bob$9bo
+                          b7o20b2$9bob7o20b$3b2obo5bo5bo17bob$3bo2bob3o3b2o9bo8b2obo$6bo6bo3bobo
+                          3b2obo5b2o4b$2bo11b2obo7bo4b4o4b$b2obo9bo3bobo6b3o8b$b3o17b3o3b3o8b$o3
+                          7b$bo36b$bo";
+            spaceship_snail.Tag = new object[] { spaceship, 21, 38, 23, 60, 1, 21, false };
+
+            spaceship = @"10b2obo12b2o2b$6b3obob3o8bob3o2b$2bobo10bo3b2obo4bo2b$2o4b2o5bo3b4obo3
+                          b2o2b$2bob2o2bo4b3obo5b4obob$8bo4bo13b3o$2bob2o2bo4b3obo5b4obob$2o4b2o
+                          5bo3b4obo3b2o2b$2bobo10bo3b2obo4bo2b$6b3obob3o8bob3o2b$10b2obo12b2o";
+            spaceship_sparky.Tag = new object[] { spaceship, 11, 30, 15, 60, 2, 28, false };
+
+            spaceship = @"9bo7bo9b$3b2obobob2o3b2obobob2o3b$3obob3o9b3obob3o$o3bobo5bobo5bobo3bo
+                          $4b2o6bobo6b2o4b$b2o9bobo9b2ob$b2ob2o15b2ob2ob$5bo15bo";
+            spaceship_spider.Tag = new object[] { spaceship, 8, 27, 40, 33, 31, 3, false };
+
+            spaceship = @"bo10b2o10b$5o6b2o11b$o2b2o8bo7b2ob$2b2obo5b2o6b3obo$11b2o3bob2o4b$5bob
+                          o6b2o8b$10b3obo4bo4b$7b3o3bo4bo5b$8bo7bo7b$8bo6bo8b2$11bo";
+            spaceship_swan.Tag = new object[] { spaceship, 12, 24, 50, 50, 37, 25, false };
+            #endregion
+
+            // T
+            #region
+            spaceship = @"b3o7bo$b2o2bob2ob2o$3b3o4bob$bo2bobo3bob$o4bo4bob$o4bo4bob$bo2bobo3bob
+                          $3b3o4bob$b2o2bob2ob2o$b3o7bo";
+            spaceship_turtle.Tag = new object[] { spaceship, 10, 12, 14, 40, 2, 26, false };
             #endregion
 
             // W
             #region
+            spaceship = @"10bo3bo7b$7bobob2ob3o5b$6bo2bo6b2ob2ob$b2o2b2o2bo3bo2bo2b2ob$b2obob2o2
+                          bo2bo4bo2bo$o3bo4b2o11b$obobo2bo2b2o10b$9bo12b$b3o";
+            spaceship_wasp.Tag = new object[] { spaceship, 9, 22, 40, 24, 29, 1, false };
+
             spaceship = @"bo12bo$bo12bo$obo10bobo$bo12bo$bo12bo$2bo3b4o3bo2b$6b4o6b$2b4o4b4o2b2$
                           4bo6bo4b$5b2o2b2o";
             spaceship_weekender.Tag = new object[] { spaceship, 11, 16, 25, 20, 13, 2, false };
+
+            spaceship = @"4b2o17b$4bobo16b$4bo18b$7bo15b$3o4bobo13b$o6bo2bo3b3o6b$bo7b2o2bo2b2o5
+                          b$3b3o7bo5b2o2b$13b2o4b3ob$4bobo3b3o9bo$5b2o2bo2bo6bo2bo$9bo9bo3b$9b2o
+                          8bobob$6b3o14b$5bo2bo14b$5bo17b$5b2o16b$6bo16b2$7b2ob3o10b$7b2o14b$8bo
+                          3bo10b$9b2o";
+            spaceship_wing.Tag = new object[] { spaceship, 23, 23, 60, 60, 36, 36, false };
+            #endregion
+
+            // X
+            #region
+            spaceship = "2bo6b$2o7b$o2b3o2bo$o4b3ob$b3o2b2ob2$b3o2b2ob$o4b3ob$o2b3o2bo$2o7b$2bo";
+            spaceship_x_66.Tag = new object[] { spaceship, 11, 9, 13, 30, 1, 20, false };
             #endregion
 
             #endregion
