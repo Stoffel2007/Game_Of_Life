@@ -16,7 +16,7 @@ namespace Game_Of_Life
         bool[,] field;
         FieldList previousFields, nextFields;
         Rectangle[,] rectangleArray;
-        bool borderIsActive, contiueOnMouseRelease;
+        bool borderIsActive, continueOnMouseRelease;
         string ruleStringSurvive, ruleStringCreate, errorMessage;
         int maxFieldSize;
         double gameBoardLength, gameBoardWidth;
@@ -32,7 +32,7 @@ namespace Game_Of_Life
             nextFields = new FieldList();
             rectangleArray = null;
             borderIsActive = false;
-            contiueOnMouseRelease = false;
+            continueOnMouseRelease = false;
             ruleStringSurvive = "23";
             ruleStringCreate = "3";
             errorMessage = "";
@@ -395,7 +395,7 @@ namespace Game_Of_Life
             if (timers[1].IsEnabled)
             {
                 timers[1].Stop();
-                contiueOnMouseRelease = true;
+                continueOnMouseRelease = true;
             }
             bool[,] fieldBefore = new bool[field.GetLength(0), field.GetLength(1)];
 
@@ -438,10 +438,10 @@ namespace Game_Of_Life
 
         private void continueGame(object sender, EventArgs e)
         {
-            if (contiueOnMouseRelease)
+            if (continueOnMouseRelease)
             {
                 toggleTimer(1);
-                contiueOnMouseRelease = false;
+                continueOnMouseRelease = false;
             }
         }
         #endregion
